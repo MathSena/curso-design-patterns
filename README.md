@@ -53,17 +53,45 @@ Dividimos a "God Class" em especialistas. Cada um cuida do seu quadrado.
 2.  **Repositório/Banco:** Cuida apenas de salvar e buscar dados (SQL).
 3.  **Apresentação:** Cuida apenas de formatar a saída (PDF, HTML, Excel).
 
-
-
 ### Analogia do Mundo Real
 * **Canivete Suíço (Ruim):** Tenta ser faca, tesoura e lixa ao mesmo tempo. Se quebrar a mola principal, você perde todas as ferramentas.
 * **Caixa de Ferramentas (Bom):** O martelo só martela. A chave de fenda só aperta. Se você perder a chave de fenda, o martelo continua funcionando perfeitamente.
 
 ---
 
+## 🚪 O - Open/Closed Principle (OCP)
+
+> **"Entidades de software devem estar abertas para extensão, mas fechadas para modificação."**
+
+O objetivo aqui é garantir que o sistema possa crescer sem que você precise "cirurgiar" o código antigo que já está funcionando e testado.
+
+### ❌ O Problema: O "If" Infinito
+Você percebe a violação quando vê uma classe cheia de `if/else` ou `switch` verificando tipos.
+
+**Exemplo Conceitual (Contexto Streaming):**
+Imagine uma classe `CalculadoraDeAssinatura`.
+* Se o plano for "Básico", cobra X.
+* Se o plano for "4K", cobra Y.
+
+Se a empresa lançar um plano "Família", você terá que abrir essa classe e adicionar mais um `if`. Isso viola o princípio, pois a classe não estava **fechada**.
+
+### ✅ A Solução: Polimorfismo (Interfaces)
+Em vez da calculadora saber todos os preços, ela aceita qualquer objeto que tenha o contrato `Plano`.
+
+1.  Cria-se uma interface comum (`Plano`).
+2.  Cada plano novo é uma **nova classe** (`PlanoFamilia`, `PlanoVIP`).
+3.  A calculadora apenas executa o contrato, sem saber qual plano específico está processando.
+4.  Para adicionar uma feature nova, você cria um arquivo novo. Você **não toca** no arquivo antigo.
+
+### Analogia do Mundo Real
+* **Console de Videogame:** O hardware do console é **fechado** (você não precisa soldar novos fios para jogar um jogo novo). O sistema é **aberto para extensão** através dos cartuchos/discos. Quer uma funcionalidade nova? Insira um cartucho novo.
+
+---
+
 ## 📚 Próximos Passos (Backlog)
 
-- [ ] **O - Open/Closed:** Como estender o comportamento sem modificar o código existente.
+- [x] **S - Single Responsibility:** Cada classe com um único motivo para mudar.
+- [x] **O - Open/Closed:** Estender sem modificar.
 - [ ] **L - Liskov:** Herança do jeito certo (evitando quebrar a classe pai).
 - [ ] **I - Interface Segregation:** Interfaces magras vs. Interfaces gordas.
 - [ ] **D - Dependency Inversion:** Depender de abstrações, não de implementações concretas.
