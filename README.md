@@ -116,12 +116,43 @@ Reorganizamos a herança:
 
 ---
 
+## 🍴 I - Interface Segregation Principle (ISP)
+
+> **"Nenhum cliente deve ser forçado a depender de métodos que não utiliza."**
+
+Muitas interfaces específicas são melhores do que uma interface única geral. Isso evita que classes sejam obrigadas a implementar métodos vazios ou que lancem erros.
+
+### ❌ O Problema: A Interface "Gorda"
+É quando criamos uma interface gigante que tenta cobrir todos os casos de uso de uma vez só.
+
+
+
+**Exemplo Conceitual (Contexto Impressora):**
+Imagine uma interface `MaquinaDeEscritorio` que obriga a ter:
+* `imprimir()`
+* `escanear()`
+* `enviarFax()`
+
+Se você criar uma classe `ImpressoraSimples` (que só imprime) implementando essa interface, ela será obrigada a ter o método `escanear()` lançando um erro. Isso polui o código.
+
+### ✅ A Solução: Interfaces Granulares
+Quebramos a interface grande em pedaços menores e focados (Papéis).
+
+1.  Interface `Impressora` (tem apenas `imprimir`).
+2.  Interface `Scanner` (tem apenas `escanear`).
+3.  A `ImpressoraSimples` implementa apenas a primeira. A `Multifuncional` implementa as duas.
+
+### Analogia do Mundo Real
+* **Menu A La Carte:** Em vez de ser obrigado a comprar o "Combo Gigante" (Hambúrguer + Batata + Refri + Sorvete) e jogar o sorvete fora porque você não queria, você pede pelo menu "A La Carte" apenas o que vai consumir.
+
+---
+
 ## 📚 Próximos Passos (Backlog)
 
 - [x] **S - Single Responsibility:** Cada classe com um único motivo para mudar.
 - [x] **O - Open/Closed:** Estender sem modificar.
 - [x] **L - Liskov:** Herança do jeito certo (evitando quebrar a classe pai).
-- [ ] **I - Interface Segregation:** Interfaces magras vs. Interfaces gordas.
+- [x] **I - Interface Segregation:** Interfaces magras vs. Interfaces gordas.
 - [ ] **D - Dependency Inversion:** Depender de abstrações, não de implementações concretas.
 
 ---
