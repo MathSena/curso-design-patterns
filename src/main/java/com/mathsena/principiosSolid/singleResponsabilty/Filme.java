@@ -1,4 +1,4 @@
-package com.mathsena.principiosSolid;
+package com.mathsena.principiosSolid.singleResponsabilty;
 
 public class Filme {
   String titulo;

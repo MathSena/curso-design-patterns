@@ -1,4 +1,4 @@
-package com.mathsena.principiosSolid;
+package com.mathsena.principiosSolid.interfaceSegregation;
 
 // Agora as classes implementam APENAS o que faz sentido
 public class QuarterbackImplementationSolid implements Treinavel, Lancador {

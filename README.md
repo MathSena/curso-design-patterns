@@ -125,8 +125,6 @@ Muitas interfaces específicas são melhores do que uma interface única geral. 
 ### ❌ O Problema: A Interface "Gorda"
 É quando criamos uma interface gigante que tenta cobrir todos os casos de uso de uma vez só.
 
-
-
 **Exemplo Conceitual (Contexto Impressora):**
 Imagine uma interface `MaquinaDeEscritorio` que obriga a ter:
 * `imprimir()`
@@ -147,13 +145,39 @@ Quebramos a interface grande em pedaços menores e focados (Papéis).
 
 ---
 
-## 📚 Próximos Passos (Backlog)
+## 🔌 D - Dependency Inversion Principle (DIP)
 
-- [x] **S - Single Responsibility:** Cada classe com um único motivo para mudar.
-- [x] **O - Open/Closed:** Estender sem modificar.
-- [x] **L - Liskov:** Herança do jeito certo (evitando quebrar a classe pai).
-- [x] **I - Interface Segregation:** Interfaces magras vs. Interfaces gordas.
-- [ ] **D - Dependency Inversion:** Depender de abstrações, não de implementações concretas.
+> **"Dependa de abstrações, não de implementações concretas."**
+
+Este é o princípio que amarra todos os outros. Módulos de alto nível (Regra de Negócio) não devem saber os detalhes de baixo nível (Banco de Dados, Ferramentas).
+
+### ❌ O Problema: O Acoplamento Forte (A "Solda")
+Acontece quando você instancia objetos específicos (`new ClasseConcreta()`) dentro da sua lógica de negócio.
+
+**Exemplo Conceitual (Contexto Banco de Dados):**
+Imagine que sua classe `ServicoDeUsuario` tem a linha:
+`private MySQLConnection banco = new MySQLConnection();`
+
+Se você quiser mudar de MySQL para MongoDB, você terá que reescrever sua regra de negócio. Seu código está "soldado" ao MySQL.
+
+### ✅ A Solução: Inversão de Controle
+Usamos Interfaces para desconectar as pontas.
+1.  Criamos uma interface `Repositorio`.
+2.  A classe de negócio diz: "Eu preciso de *um* repositório, não me importa qual".
+3.  Passamos o banco específico (MySQL, Mongo) pelo construtor (Injeção de Dependência).
+
+### Analogia do Mundo Real
+* **A Tomada da Parede:** A sua parede (Infraestrutura) tem uma interface padrão (o buraco da tomada). A sua TV (Negócio) tem um plugue. Você pode ligar a TV, o ventilador ou o carregador, porque ambos dependem do padrão da tomada, e não de soldar o fio direto na rede elétrica.
+
+---
+
+## 📚 Status do Estudo
+
+- [x] **S - Single Responsibility**
+- [x] **O - Open/Closed**
+- [x] **L - Liskov Substitution**
+- [x] **I - Interface Segregation**
+- [x] **D - Dependency Inversion**
 
 ---
 *Estudo iniciado em: Fevereiro de 2026*

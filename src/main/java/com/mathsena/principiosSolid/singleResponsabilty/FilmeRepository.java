@@ -1,4 +1,4 @@
-package com.mathsena.principiosSolid;
+package com.mathsena.principiosSolid.singleResponsabilty;
 
 class FilmeRepository {
   public void salvar(Filme filme) {

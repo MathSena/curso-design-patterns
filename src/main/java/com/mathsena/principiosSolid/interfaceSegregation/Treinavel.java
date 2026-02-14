@@ -1,4 +1,4 @@
-package com.mathsena.principiosSolid;
+package com.mathsena.principiosSolid.interfaceSegregation;
 
 // Interfaces Granulares (Papéis)
 public interface Treinavel {

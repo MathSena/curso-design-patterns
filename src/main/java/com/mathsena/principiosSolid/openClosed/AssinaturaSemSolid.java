@@ -1,4 +1,4 @@
-package com.mathsena.principiosSolid;
+package com.mathsena.principiosSolid.openClosed;
 
 public class AssinaturaSemSolid {
     public double calcularTotal(String plano) {
