@@ -88,11 +88,39 @@ Em vez da calculadora saber todos os preços, ela aceita qualquer objeto que ten
 
 ---
 
+## 🦆 L - Liskov Substitution Principle (LSP)
+
+> **"Uma classe derivada deve poder substituir sua classe base sem quebrar o sistema."**
+
+Esse princípio fala sobre **confiança**. Se uma classe B herda de A, o sistema deve poder usar B achando que é A, sem receber erros inesperados.
+
+### ❌ O Problema: A "Herança Mentirosa"
+Acontece quando criamos uma classe filha que não consegue fazer o que a classe pai promete.
+
+**Exemplo Conceitual (Contexto Streaming):**
+* **Classe Pai:** `Video` (promete ter o método `avancar`).
+* **Classe Filha:** `LiveStream` (herda de Video).
+
+Se o sistema tentar chamar `avancar()` numa Live, o programa quebra, pois não se pode avançar o futuro. A `LiveStream` violou o contrato da classe pai.
+
+### ✅ A Solução: Respeitar a Hierarquia
+Se a filha não faz tudo que a mãe faz, ela não deveria ser filha.
+Reorganizamos a herança:
+* Classe `Midia` (só Toca).
+* Interface `Gravacao` (Toca e Avança).
+* `Filme` implementa `Gravacao`.
+* `Live` implementa apenas `Midia`.
+
+### Analogia do Mundo Real
+* **O Teste do Pato:** "Se parece com um pato, nada como um pato e grasna como um pato, mas **precisa de pilhas para funcionar**, então você tem uma abstração errada." (É um brinquedo, não um pato real).
+
+---
+
 ## 📚 Próximos Passos (Backlog)
 
 - [x] **S - Single Responsibility:** Cada classe com um único motivo para mudar.
 - [x] **O - Open/Closed:** Estender sem modificar.
-- [ ] **L - Liskov:** Herança do jeito certo (evitando quebrar a classe pai).
+- [x] **L - Liskov:** Herança do jeito certo (evitando quebrar a classe pai).
 - [ ] **I - Interface Segregation:** Interfaces magras vs. Interfaces gordas.
 - [ ] **D - Dependency Inversion:** Depender de abstrações, não de implementações concretas.
 
